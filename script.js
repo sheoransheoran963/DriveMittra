@@ -8,7 +8,8 @@ document.getElementById("form").addEventListener("submit", function(e){
 
   data.vehicle = document.getElementById("vehicle").value;
   data.state = document.getElementById("state").value;
-  data.time = document.getElementById("time").value;
+  data.fromDate = document.getElementById("fromDate").value;
+data.toDate = document.getElementById("toDate").value;
 
   startCountdown(300); // 5 min
   timerRunning = true;
