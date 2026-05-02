@@ -44,7 +44,8 @@ function downloadPDF(){
   doc.setFontSize(12);
   doc.text("Vehicle: " + data.vehicle, 20, 40);
   doc.text("State: " + data.state, 20, 50);
-  doc.text("Time: " + data.time, 20, 60);
+  doc.text("Valid From: " + data.fromDate, 20, 60);
+doc.text("Valid Upto: " + data.toDate, 20, 70);
 
   doc.save("Vehicle_Pass.pdf");
 }
