@@ -1,51 +1,56 @@
 let data = {};
-let timerRunning = false;
+let timeLeft = 300;
 
-document.getElementById("form").addEventListener("submit", function(e){
-  e.preventDefault();
-
-  if(timerRunning) return;
-
+// PAGE SWITCH
+function goToPage2(){
   data.vehicle = document.getElementById("vehicle").value;
   data.state = document.getElementById("state").value;
   data.fromDate = document.getElementById("fromDate").value;
-data.toDate = document.getElementById("toDate").value;
+  data.toDate = document.getElementById("toDate").value;
 
-  startCountdown(300); // 5 min
-  timerRunning = true;
-});
+  document.getElementById("page1").style.display = "none";
+  document.getElementById("page2").style.display = "block";
+}
 
-function startCountdown(seconds){
+function goToPage3(){
+  document.getElementById("page2").style.display = "none";
+  document.getElementById("page3").style.display = "block";
+
+  startCountdown();
+}
+
+// COUNTDOWN
+function startCountdown(){
   let timer = document.getElementById("countdown");
 
   let interval = setInterval(()=>{
-    let min = Math.floor(seconds/60);
-    let sec = seconds%60;
+    let min = Math.floor(timeLeft/60);
+    let sec = timeLeft%60;
 
     timer.innerHTML = `⏳ ${min}:${sec < 10 ? '0'+sec : sec}`;
+    timeLeft--;
 
-    seconds--;
-
-    if(seconds < 0){
+    if(timeLeft < 0){
       clearInterval(interval);
-      timer.innerHTML = "✅ Time Completed";
-      document.getElementById("pdfBtn").style.display = "block";
+      timer.innerHTML = "❌ Time expired";
     }
   },1000);
 }
 
+// ⚠️ FAKE COMPLETE BUTTON (testing ke liye)
+function completeFromBackend(){
+  document.getElementById("downloadBtn").style.display = "block";
+  document.getElementById("countdown").innerHTML = "✅ Completed";
+}
+
+// PDF
 function downloadPDF(){
   const { jsPDF } = window.jspdf;
   let doc = new jsPDF();
 
-  doc.setFontSize(16);
-  doc.text("Vehicle Pass", 20, 20);
+  doc.text("Vehicle: " + data.vehicle, 20, 20);
+  doc.text("State: " + data.state, 20, 30);
+  doc.text("Valid: " + data.fromDate + " to " + data.toDate, 20, 40);
 
-  doc.setFontSize(12);
-  doc.text("Vehicle: " + data.vehicle, 20, 40);
-  doc.text("State: " + data.state, 20, 50);
-  doc.text("Valid From: " + data.fromDate, 20, 60);
-doc.text("Valid Upto: " + data.toDate, 20, 70);
-
-  doc.save("Vehicle_Pass.pdf");
+  doc.save("pass.pdf");
 }
