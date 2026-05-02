@@ -15,7 +15,7 @@ function goToPage2(){
 function goToPage3(){
   document.getElementById("page2").style.display = "none";
   document.getElementById("page3").style.display = "block";
-
+saveData();
   startCountdown();
 }
 
