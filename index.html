@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vehicle Booking</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Vehicle Entry Form</h2>
+
+<form id="form">
+  <input type="text" id="vehicle" placeholder="Vehicle Number" required><br>
+  
+  <select id="state" required>
+    <option value="">Select State</option>
+    <option>Haryana</option>
+    <option>Delhi</option>
+    <option>Punjab</option>
+  </select><br>
+
+  <input type="time" id="time" required><br>
+
+  <input type="file" id="file"><br>
+
+  <button type="submit">Submit</button>
+</form>
+
+<div id="countdown"></div>
+<button onclick="downloadPDF()">Download PDF</button>
+
+<script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</body>
+</html>
