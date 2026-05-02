@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Vehicle Booking</title>
+  <title>Vehicle Pass</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Vehicle Entry Form</h2>
+<div class="container">
+  <h2>Vehicle Entry</h2>
 
-<form id="form">
-  <input type="text" id="vehicle" placeholder="Vehicle Number" required><br>
-  
-  <select id="state" required>
-    <option value="">Select State</option>
-    <option>Haryana</option>
-    <option>Delhi</option>
-    <option>Punjab</option>
-  </select><br>
+  <form id="form">
+    <input type="text" id="vehicle" placeholder="Vehicle Number" required>
 
-  <input type="time" id="time" required><br>
+    <select id="state" required>
+      <option value="">Select State</option>
+      <option>Haryana</option>
+      <option>Delhi</option>
+      <option>Punjab</option>
+    </select>
 
-  <input type="file" id="file"><br>
+    <input type="time" id="time" required>
 
-  <button type="submit">Submit</button>
-</form>
+    <input type="file" id="file" accept="image/*">
 
-<div id="countdown"></div>
-<button onclick="downloadPDF()">Download PDF</button>
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="countdown"></div>
+
+  <button id="pdfBtn" onclick="downloadPDF()" style="display:none;">
+    Download Pass
+  </button>
+</div>
 
 <script src="script.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
